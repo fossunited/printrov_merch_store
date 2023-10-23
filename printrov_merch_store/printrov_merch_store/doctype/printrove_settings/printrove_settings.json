@@ -7,9 +7,13 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "section_break_txqt",
   "email",
   "column_break_ppmp",
-  "password"
+  "password",
+  "storefront_section",
+  "use_custom_product_view_template",
+  "custom_product_view_template"
  ],
  "fields": [
   {
@@ -25,12 +29,35 @@
    "fieldname": "password",
    "fieldtype": "Password",
    "label": "Password"
+  },
+  {
+   "default": "0",
+   "fieldname": "use_custom_product_view_template",
+   "fieldtype": "Check",
+   "label": "Use Custom Product View Template?"
+  },
+  {
+   "depends_on": "eval:doc.use_custom_product_view_template==true",
+   "description": "Note: You can use `{{ doc.name }}` for dynamic values from document",
+   "fieldname": "custom_product_view_template",
+   "fieldtype": "HTML Editor",
+   "label": "Custom Product View Template"
+  },
+  {
+   "fieldname": "section_break_txqt",
+   "fieldtype": "Section Break",
+   "label": "Printrove Account"
+  },
+  {
+   "fieldname": "storefront_section",
+   "fieldtype": "Section Break",
+   "label": "Storefront"
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2023-10-21 19:25:42.096032",
+ "modified": "2023-10-23 11:05:26.774350",
  "modified_by": "Administrator",
  "module": "Printrov Merch Store",
  "name": "Printrove Settings",
