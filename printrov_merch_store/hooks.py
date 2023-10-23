@@ -134,7 +134,8 @@ app_license = "mit"
 # ---------------
 
 scheduler_events = {
-    "hourly": [
+    # every five minutes
+    "*/5 * * * *": [
         "printrov_merch_store.tasks.sync_products_from_printrove"
     ]
 }
