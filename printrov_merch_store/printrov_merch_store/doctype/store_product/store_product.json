@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_guest_to_view": 1,
  "allow_rename": 1,
  "autoname": "prompt",
  "creation": "2023-10-21 19:07:31.178460",
@@ -11,6 +12,7 @@
   "retail_price",
   "column_break_qyeb",
   "is_published",
+  "route",
   "printrove_product_data_section",
   "front_mockup_image",
   "front_mockup",
@@ -74,11 +76,18 @@
    "fieldtype": "Image",
    "label": "Front Mockup Image",
    "options": "front_mockup"
+  },
+  {
+   "fieldname": "route",
+   "fieldtype": "Data",
+   "label": "Route"
   }
  ],
+ "has_web_view": 1,
  "index_web_pages_for_search": 1,
+ "is_published_field": "is_published",
  "links": [],
- "modified": "2023-10-23 10:20:15.440895",
+ "modified": "2023-10-23 10:56:50.848320",
  "modified_by": "Administrator",
  "module": "Printrov Merch Store",
  "name": "Store Product",
@@ -98,6 +107,7 @@
    "write": 1
   }
  ],
+ "route": "products",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],
