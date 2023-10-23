@@ -21,9 +21,7 @@ def sync_products_from_printrove():
             "front_mockup": product["mockup"]["front_mockup"],
             "back_mockup": product["mockup"]["back_mockup"]
         }).insert(ignore_permissions=True)
-
-
-    
+ 
 
 def get_printrove_access_token():
     printrove_settings = frappe.get_single("Printrove Settings")
