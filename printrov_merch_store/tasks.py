@@ -5,7 +5,7 @@ from frappe.integrations.utils import make_get_request, make_post_request
 
 BASE_URL = "https://api.printrove.com/"
 
-
+@frappe.whitelist()
 def sync_products_from_printrove():
     access_token = get_printrove_access_token()
     headers = {"Authorization": f"Bearer {access_token}"}
@@ -14,14 +14,25 @@ def sync_products_from_printrove():
     all_products = all_products["products"]
 
     for product in all_products:
-        doc = frappe.get_doc({
-            "doctype": "Store Product",
-            "name": product["name"],
-            "printrove_id": product["id"],
+        product_data = {
             "front_mockup": product["mockup"]["front_mockup"],
             "back_mockup": product["mockup"]["back_mockup"]
-        }).insert(ignore_permissions=True)
- 
+        }
+
+        if not frappe.db.exists("Store Product", {"printrove_id": product["id"]}):
+            doc = frappe.get_doc({
+                "doctype": "Store Product",
+                "name": product["name"],
+                "printrove_id": product["id"],
+                **product_data
+            }).insert(ignore_permissions=True)
+        else:
+            # update the product
+            doc = frappe.get_doc("Store Product", {"printrove_id": product["id"]})
+            doc.update({
+                **product_data
+            })
+            doc.save(ignore_permissions=True)
 
 def get_printrove_access_token():
     printrove_settings = frappe.get_single("Printrove Settings")
