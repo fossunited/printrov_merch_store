@@ -8,10 +8,15 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "printrove_id",
   "retail_price",
   "column_break_qyeb",
+  "is_published",
+  "printrove_product_data_section",
+  "front_mockup_image",
   "front_mockup",
+  "printrove_id",
+  "column_break_bdfh",
+  "back_mockup_image",
   "back_mockup"
  ],
  "fields": [
@@ -28,22 +33,52 @@
    "fieldname": "printrove_id",
    "fieldtype": "Data",
    "label": "Printrove ID",
+   "read_only": 1,
    "unique": 1
   },
   {
    "fieldname": "front_mockup",
-   "fieldtype": "Attach",
-   "label": "Front Mockup"
+   "fieldtype": "Attach Image",
+   "label": "Front Mockup",
+   "read_only": 1
   },
   {
    "fieldname": "back_mockup",
-   "fieldtype": "Attach",
-   "label": "Back Mockup"
+   "fieldtype": "Attach Image",
+   "label": "Back Mockup",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "is_published",
+   "fieldtype": "Check",
+   "label": "Is Published?"
+  },
+  {
+   "fieldname": "printrove_product_data_section",
+   "fieldtype": "Section Break",
+   "label": "Printrove Product Data"
+  },
+  {
+   "fieldname": "column_break_bdfh",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "back_mockup_image",
+   "fieldtype": "Image",
+   "label": "Back Mockup Image",
+   "options": "back_mockup"
+  },
+  {
+   "fieldname": "front_mockup_image",
+   "fieldtype": "Image",
+   "label": "Front Mockup Image",
+   "options": "front_mockup"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-10-21 19:46:21.669293",
+ "modified": "2023-10-23 10:20:15.440895",
  "modified_by": "Administrator",
  "module": "Printrov Merch Store",
  "name": "Store Product",
