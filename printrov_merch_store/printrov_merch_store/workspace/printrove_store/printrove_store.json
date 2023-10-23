@@ -13,7 +13,7 @@
  "is_hidden": 0,
  "label": "Printrove Store",
  "links": [],
- "modified": "2023-10-23 10:54:35.498162",
+ "modified": "2023-10-23 12:57:15.396776",
  "modified_by": "Administrator",
  "module": "Printrov Merch Store",
  "name": "Printrove Store",
@@ -23,7 +23,7 @@
  "public": 1,
  "quick_lists": [],
  "roles": [],
- "sequence_id": 23.0,
+ "sequence_id": 1.0,
  "shortcuts": [
   {
    "color": "Green",
