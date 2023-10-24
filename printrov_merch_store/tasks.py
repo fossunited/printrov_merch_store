@@ -17,7 +17,9 @@ def sync_products_from_printrove():
     for product in all_products:
         product_data = {
             "front_mockup": product["mockup"]["front_mockup"],
-            "back_mockup": product["mockup"]["back_mockup"]
+            "back_mockup": product["mockup"]["back_mockup"],
+            "printrove_category": product["product"]["name"],
+            "printrove_category_id": product["product"]["id"],
         }
 
         if not frappe.db.exists("Store Product", {"printrove_id": product["id"]}):
