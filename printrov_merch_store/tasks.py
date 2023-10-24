@@ -6,6 +6,7 @@ from frappe.integrations.utils import make_get_request, make_post_request
 BASE_URL = "https://api.printrove.com/"
 SECONDS_IN_YEAR = 364 * 24 * 60 * 60
 
+
 @frappe.whitelist()
 def sync_products_from_printrove():
     access_token = get_printrove_access_token()
@@ -23,19 +24,20 @@ def sync_products_from_printrove():
         }
 
         if not frappe.db.exists("Store Product", {"printrove_id": product["id"]}):
-            doc = frappe.get_doc({
-                "doctype": "Store Product",
-                "name": product["name"],
-                "printrove_id": product["id"],
-                **product_data
-            }).insert(ignore_permissions=True)
+            doc = frappe.get_doc(
+                {
+                    "doctype": "Store Product",
+                    "name": product["name"],
+                    "printrove_id": product["id"],
+                    **product_data,
+                }
+            ).insert(ignore_permissions=True)
         else:
             # update the product
             doc = frappe.get_doc("Store Product", {"printrove_id": product["id"]})
-            doc.update({
-                **product_data
-            })
+            doc.update({**product_data})
             doc.save(ignore_permissions=True)
+
 
 def get_printrove_access_token():
     token = frappe.cache.get_value("printrove_access_token")
@@ -55,6 +57,8 @@ def get_printrove_access_token():
     access_token = response["access_token"]
 
     # store for a year
-    frappe.cache.set_value("printrove_access_token", access_token, expires_in_sec=SECONDS_IN_YEAR)
+    frappe.cache.set_value(
+        "printrove_access_token", access_token, expires_in_sec=SECONDS_IN_YEAR
+    )
 
     return access_token
