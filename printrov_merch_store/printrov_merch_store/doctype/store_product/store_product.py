@@ -10,7 +10,7 @@ class StoreProduct(WebsiteGenerator):
 		context.add_breadcrumbs = 1
 		context.parents = [
 			{"label": "Store", "route": "/store"},
-			{"label": self.printrove_category, "route": "/store"},
+			{"label": self.printrove_category, "route": "/store?category=" + self.printrove_category},
 		]
 		settings = frappe.get_cached_doc("Printrove Settings")
 
