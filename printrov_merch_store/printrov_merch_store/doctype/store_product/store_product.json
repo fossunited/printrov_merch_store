@@ -13,6 +13,8 @@
   "column_break_qyeb",
   "is_published",
   "route",
+  "product_description_section",
+  "description",
   "printrove_product_data_section",
   "front_mockup_image",
   "front_mockup",
@@ -95,13 +97,23 @@
    "fieldtype": "Int",
    "label": "Printrove Category ID",
    "read_only": 1
+  },
+  {
+   "fieldname": "product_description_section",
+   "fieldtype": "Section Break",
+   "label": "Product Description"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text Editor",
+   "label": "Description"
   }
  ],
  "has_web_view": 1,
  "index_web_pages_for_search": 1,
  "is_published_field": "is_published",
  "links": [],
- "modified": "2023-10-24 14:57:48.169628",
+ "modified": "2023-10-24 15:22:50.044694",
  "modified_by": "Administrator",
  "module": "Printrov Merch Store",
  "name": "Store Product",
