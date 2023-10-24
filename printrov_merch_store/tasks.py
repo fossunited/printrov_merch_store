@@ -1,6 +1,9 @@
 import frappe
 
-from frappe.integrations.utils import make_get_request, make_post_request
+from frappe.integrations.utils import (
+    make_get_request,
+    make_post_request,
+)
 
 
 BASE_URL = "https://api.printrove.com/"
@@ -12,7 +15,9 @@ def sync_products_from_printrove():
     access_token = get_printrove_access_token()
     headers = {"Authorization": f"Bearer {access_token}"}
     products_route = "api/external/products"
-    all_products = make_get_request(f"{BASE_URL}{products_route}", headers=headers)
+    all_products = make_get_request(
+        f"{BASE_URL}{products_route}", headers=headers
+    )
     all_products = all_products["products"]
 
     for product in all_products:
@@ -23,7 +28,9 @@ def sync_products_from_printrove():
             "printrove_category_id": product["product"]["id"],
         }
 
-        if not frappe.db.exists("Store Product", {"printrove_id": product["id"]}):
+        if not frappe.db.exists(
+            "Store Product", {"printrove_id": product["id"]}
+        ):
             doc = frappe.get_doc(
                 {
                     "doctype": "Store Product",
@@ -34,7 +41,9 @@ def sync_products_from_printrove():
             ).insert(ignore_permissions=True)
         else:
             # update the product
-            doc = frappe.get_doc("Store Product", {"printrove_id": product["id"]})
+            doc = frappe.get_doc(
+                "Store Product", {"printrove_id": product["id"]}
+            )
             doc.update({**product_data})
             doc.save(ignore_permissions=True)
 
@@ -58,7 +67,9 @@ def get_printrove_access_token():
 
     # store for a year
     frappe.cache.set_value(
-        "printrove_access_token", access_token, expires_in_sec=SECONDS_IN_YEAR
+        "printrove_access_token",
+        access_token,
+        expires_in_sec=SECONDS_IN_YEAR,
     )
 
     return access_token

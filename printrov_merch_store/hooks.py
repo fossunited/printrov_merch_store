@@ -135,7 +135,11 @@ app_license = "mit"
 
 scheduler_events = {
     # every five minutes
-    "Cron": {"*/5 * * * *": ["printrov_merch_store.tasks.sync_products_from_printrove"]}
+    "Cron": {
+        "*/5 * * * *": [
+            "printrov_merch_store.tasks.sync_products_from_printrove"
+        ]
+    }
 }
 
 # scheduler_events = {
