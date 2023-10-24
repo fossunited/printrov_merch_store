@@ -7,6 +7,11 @@ from frappe.website.website_generator import WebsiteGenerator
 
 class StoreProduct(WebsiteGenerator):
 	def get_context(self, context):
+		context.add_breadcrumbs = 1
+		context.parents = [
+			{"label": "Store", "route": "/store"},
+			{"label": self.printrove_category, "route": "/store"},
+		]
 		settings = frappe.get_cached_doc("Printrove Settings")
 
 		if settings.use_custom_product_view_template:
