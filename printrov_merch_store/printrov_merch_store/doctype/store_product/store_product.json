@@ -33,6 +33,7 @@
   {
    "fieldname": "retail_price",
    "fieldtype": "Currency",
+   "in_list_view": 1,
    "label": "Retail Price"
   },
   {
@@ -89,6 +90,7 @@
   {
    "fieldname": "printrove_category",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Printrove Category",
    "read_only": 1
   },
@@ -113,7 +115,7 @@
  "index_web_pages_for_search": 1,
  "is_published_field": "is_published",
  "links": [],
- "modified": "2023-10-24 15:22:50.044694",
+ "modified": "2023-10-25 14:34:24.815275",
  "modified_by": "Administrator",
  "module": "Printrov Merch Store",
  "name": "Store Product",
