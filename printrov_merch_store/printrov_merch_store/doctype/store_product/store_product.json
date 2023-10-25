@@ -9,18 +9,22 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "front_mockup_image",
+  "column_break_anfs",
+  "back_mockup_image",
+  "section_break_gfwc",
   "retail_price",
   "column_break_qyeb",
   "is_published",
   "route",
+  "section_break_uaup",
+  "variants",
   "product_description_section",
   "description",
   "printrove_product_data_section",
-  "front_mockup_image",
   "front_mockup",
   "printrove_id",
   "column_break_bdfh",
-  "back_mockup_image",
   "back_mockup",
   "printrove_category",
   "printrove_category_id"
@@ -109,13 +113,32 @@
    "fieldname": "description",
    "fieldtype": "Text Editor",
    "label": "Description"
+  },
+  {
+   "fieldname": "column_break_anfs",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_gfwc",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "section_break_uaup",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "variants",
+   "fieldtype": "Table",
+   "label": "Variants",
+   "options": "Store Product Variant",
+   "read_only": 1
   }
  ],
  "has_web_view": 1,
  "index_web_pages_for_search": 1,
  "is_published_field": "is_published",
  "links": [],
- "modified": "2023-10-25 14:34:24.815275",
+ "modified": "2023-10-25 14:57:48.477666",
  "modified_by": "Administrator",
  "module": "Printrov Merch Store",
  "name": "Store Product",
