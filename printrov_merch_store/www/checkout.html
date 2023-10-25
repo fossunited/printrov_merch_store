@@ -1,1 +1,87 @@
+{% extends "templates/web.html" %}
+
+{% block script %}
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+    const checkout_form = document.getElementById("checkout-form");
+    checkout_form.addEventListener("submit", (e) => {
+        // Create a "Store Order" in the backend
+        e.preventDefault();
+
+        const formData = new FormData(e.target);
+
+        frappe.call({
+            "method": "printrov_merch_store.api.handle_checkout_submit",
+            "args": {
+                "product_name": "{{ frappe.form_dict.get('product') }}",
+                "order_details": Object.fromEntries(formData)
+            }
+        }).then(() => {
+            alert("Request made to the backend...")
+        }).catch(() => {
+            alert("Something wend wrong..")
+        })
+        // Use the details to trigger payment here
+        // Process payment events and notify backend
+    })
+
+</script>
+{% endblock %}
+
+{% block page_content %}
 <h2>Check Out with: {{ frappe.form_dict.get("product") }}</h2>
+
+<form class="mt-5" id="checkout-form">
+    <div class="form-group">
+        <label for="customer_name">Full Name</label>
+        <input required name="customer_name" type="text" class="form-control" id="customer_name">
+    </div>
+
+    <div class="form-group">
+        <label for="phone_number">Phone Number</label>
+        <input required id="phone_number" name="phone_number" type="text" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="address_line_1">Address Line 1</label>
+        <input required id="address_line_1" name="address_line_1" type="text" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="address_line_2">Address Line 2</label>
+        <input required id="address_line_2" name="address_line_2" type="text" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="address_line_3">Address Line 3</label>
+        <input id="address_line_3" name="address_line_3" type="text" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="country">Country</label>
+        <input required id="country" name="country" type="text" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="state">State</label>
+        <input required id="state" name="state" type="text" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="city">City</label>
+        <input required id="city" name="city" type="text" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="pincode">Pin code</label>
+        <input required id="pincode" name="pincode" type="text" class="form-control">
+    </div>
+
+    <div class="form-group form-check">
+        <input type="checkbox" class="form-check-input" id="is_cod">
+        <label class="form-check-label" for="is_cod" name="is_cod">Cash On Delivery</label>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Place Order & Pay</button>
+</form>
+{% endblock %}
