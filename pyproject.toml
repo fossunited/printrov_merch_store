@@ -22,3 +22,6 @@ build-backend = "flit_core.buildapi"
 
 [tool.ruff]
 line-length = 70
+select = [
+    "I"
+]

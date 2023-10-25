@@ -1,10 +1,8 @@
 import frappe
-
 from frappe.integrations.utils import (
     make_get_request,
     make_post_request,
 )
-
 
 BASE_URL = "https://api.printrove.com/"
 SECONDS_IN_YEAR = 364 * 24 * 60 * 60
