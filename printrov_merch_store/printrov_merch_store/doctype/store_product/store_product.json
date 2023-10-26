@@ -63,6 +63,7 @@
    "default": "0",
    "fieldname": "is_published",
    "fieldtype": "Check",
+   "in_list_view": 1,
    "label": "Is Published?"
   },
   {
@@ -138,7 +139,7 @@
  "index_web_pages_for_search": 1,
  "is_published_field": "is_published",
  "links": [],
- "modified": "2023-10-25 14:57:48.477666",
+ "modified": "2023-10-26 06:38:37.753696",
  "modified_by": "Administrator",
  "module": "Printrov Merch Store",
  "name": "Store Product",
