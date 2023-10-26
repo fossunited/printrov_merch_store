@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"x_1DhToOF2\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Printrove Store</span>\",\"col\":12}},{\"id\":\"Ov84apgTmh\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Products\",\"col\":4}},{\"id\":\"8jdI3lwVso\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Printrove Settings\",\"col\":4}},{\"id\":\"mQAQCMvMK2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Razorpay Settings\",\"col\":4}}]",
+ "content": "[{\"id\":\"aKPzfYm9du\",\"type\":\"onboarding\",\"data\":{\"onboarding_name\":\"Printrove Onboarding\",\"col\":12}},{\"id\":\"x_1DhToOF2\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Printrove Store</span>\",\"col\":12}},{\"id\":\"Ov84apgTmh\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Products\",\"col\":4}},{\"id\":\"8jdI3lwVso\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Printrove Settings\",\"col\":4}},{\"id\":\"mQAQCMvMK2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Razorpay Settings\",\"col\":4}}]",
  "creation": "2023-10-23 10:52:38.077882",
  "custom_blocks": [],
  "docstatus": 0,
@@ -13,7 +13,7 @@
  "is_hidden": 0,
  "label": "Printrove Store",
  "links": [],
- "modified": "2023-10-25 16:04:36.343406",
+ "modified": "2023-10-26 07:00:44.780355",
  "modified_by": "Administrator",
  "module": "Printrov Merch Store",
  "name": "Printrove Store",

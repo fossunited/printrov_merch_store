@@ -1,0 +1,32 @@
+{
+ "allow_roles": [
+  {
+   "role": "System Manager"
+  }
+ ],
+ "creation": "2023-10-26 06:46:02.320464",
+ "docstatus": 0,
+ "doctype": "Module Onboarding",
+ "documentation_url": "https://github.com/NagariaHussain/printrov_merch_store",
+ "idx": 0,
+ "is_complete": 0,
+ "modified": "2023-10-26 07:00:33.570106",
+ "modified_by": "Administrator",
+ "module": "Printrov Merch Store",
+ "name": "Printrove Onboarding",
+ "owner": "Administrator",
+ "steps": [
+  {
+   "step": "Set Account Credentials"
+  },
+  {
+   "step": "Set Razorpay Credentials"
+  },
+  {
+   "step": "Publish Products"
+  }
+ ],
+ "subtitle": "Fill in a few credentials and you should be ready to go!",
+ "success_message": "Your merchandise store is ready go! \ud83d\ude80",
+ "title": "Setup Your Store"
+}

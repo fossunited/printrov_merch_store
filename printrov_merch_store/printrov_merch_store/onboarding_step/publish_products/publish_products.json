@@ -1,0 +1,21 @@
+{
+ "action": "Update Settings",
+ "action_label": "Publish Products",
+ "creation": "2023-10-26 06:57:34.001230",
+ "description": "Add prices and publish your products to the portal!",
+ "docstatus": 0,
+ "doctype": "Onboarding Step",
+ "idx": 0,
+ "is_complete": 0,
+ "is_single": 0,
+ "is_skipped": 0,
+ "modified": "2023-10-26 06:57:34.001230",
+ "modified_by": "Administrator",
+ "name": "Publish Products",
+ "owner": "Administrator",
+ "reference_document": "Store Product",
+ "show_form_tour": 0,
+ "show_full_form": 0,
+ "title": "Publish Products",
+ "validate_action": 0
+}
