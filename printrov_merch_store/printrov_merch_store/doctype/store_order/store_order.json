@@ -32,7 +32,13 @@
   "column_break_wnsd",
   "country",
   "state",
-  "city"
+  "city",
+  "printrove_order_details_section",
+  "printrove_order_id",
+  "tracking_id",
+  "column_break_rjpc",
+  "courier",
+  "printrove_status"
  ],
  "fields": [
   {
@@ -111,7 +117,7 @@
    "fieldname": "status",
    "fieldtype": "Select",
    "label": "Status",
-   "options": "Payment Pending\nPaid\nPlaced\nDelivered"
+   "options": "Payment Pending\nPaid\nPlaced On Printrove\nDelivered"
   },
   {
    "fieldname": "billing_details_section",
@@ -179,12 +185,42 @@
    "fieldtype": "Data",
    "label": "Razorpay Payment ID",
    "read_only": 1
+  },
+  {
+   "fieldname": "printrove_order_details_section",
+   "fieldtype": "Section Break",
+   "label": "Printrove Order Details"
+  },
+  {
+   "fieldname": "printrove_order_id",
+   "fieldtype": "Int",
+   "label": "Printrove Order ID",
+   "read_only": 1
+  },
+  {
+   "fieldname": "tracking_id",
+   "fieldtype": "Data",
+   "label": "Tracking ID"
+  },
+  {
+   "fieldname": "column_break_rjpc",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "courier",
+   "fieldtype": "Data",
+   "label": "Courier"
+  },
+  {
+   "fieldname": "printrove_status",
+   "fieldtype": "Data",
+   "label": "Printrove Status"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-10-26 11:58:25.265441",
+ "modified": "2023-10-26 12:23:15.259878",
  "modified_by": "Administrator",
  "module": "Printrov Merch Store",
  "name": "Store Order",
