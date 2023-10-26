@@ -1,0 +1,6 @@
+{% extends "templates/web.html" %}
+
+{% block page_content %}
+    {% set order_id = frappe.form_dict.get("store_order_id") %}
+    <h2>Payment Successful. Your order has been placed with order id: {{ order_id }}</h2>
+{% endblock %}

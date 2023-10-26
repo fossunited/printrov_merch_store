@@ -10,8 +10,13 @@
  "field_order": [
   "product_details_section",
   "product",
+  "variant_id",
   "column_break_ujlv",
   "retail_price",
+  "payment_details_section",
+  "razorpay_order_id",
+  "column_break_hjxh",
+  "razorpay_payment_id",
   "customer_details_section",
   "user",
   "customer_name",
@@ -47,17 +52,20 @@
   {
    "fieldname": "customer_name",
    "fieldtype": "Data",
-   "label": "Customer Name"
+   "label": "Customer Name",
+   "reqd": 1
   },
   {
    "fieldname": "address_line_1",
    "fieldtype": "Data",
-   "label": "Address Line 1"
+   "label": "Address Line 1",
+   "reqd": 1
   },
   {
    "fieldname": "address_line_2",
    "fieldtype": "Data",
-   "label": "Address Line 2"
+   "label": "Address Line 2",
+   "reqd": 1
   },
   {
    "fieldname": "address_line_3",
@@ -71,34 +79,39 @@
   {
    "fieldname": "state",
    "fieldtype": "Data",
-   "label": "State"
+   "label": "State",
+   "reqd": 1
   },
   {
    "fieldname": "city",
    "fieldtype": "Data",
-   "label": "City"
+   "label": "City",
+   "reqd": 1
   },
   {
    "fieldname": "country",
    "fieldtype": "Data",
-   "label": "Country"
+   "label": "Country",
+   "reqd": 1
   },
   {
    "fieldname": "pincode",
    "fieldtype": "Data",
-   "label": "Pincode"
+   "label": "Pincode",
+   "reqd": 1
   },
   {
    "fieldname": "phone_number",
    "fieldtype": "Data",
-   "label": "Phone Number"
+   "label": "Phone Number",
+   "reqd": 1
   },
   {
-   "default": "Pending",
+   "default": "Payment Pending",
    "fieldname": "status",
    "fieldtype": "Select",
    "label": "Status",
-   "options": "Pending\nPlaced\nDelivered"
+   "options": "Payment Pending\nPaid\nPlaced\nDelivered"
   },
   {
    "fieldname": "billing_details_section",
@@ -113,7 +126,8 @@
    "fieldname": "user",
    "fieldtype": "Link",
    "label": "User",
-   "options": "User"
+   "options": "User",
+   "reqd": 1
   },
   {
    "fieldname": "product_details_section",
@@ -123,8 +137,10 @@
   {
    "fieldname": "product",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Product",
-   "options": "Store Product"
+   "options": "Store Product",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_ujlv",
@@ -135,12 +151,40 @@
    "fieldname": "retail_price",
    "fieldtype": "Currency",
    "label": "Retail Price"
+  },
+  {
+   "fieldname": "variant_id",
+   "fieldtype": "Int",
+   "label": "Variant ID",
+   "reqd": 1
+  },
+  {
+   "fieldname": "razorpay_order_id",
+   "fieldtype": "Data",
+   "label": "Razorpay Order ID",
+   "read_only": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "payment_details_section",
+   "fieldtype": "Section Break",
+   "label": "Payment Details"
+  },
+  {
+   "fieldname": "column_break_hjxh",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "razorpay_payment_id",
+   "fieldtype": "Data",
+   "label": "Razorpay Payment ID",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-10-21 19:21:39.671049",
+ "modified": "2023-10-26 11:58:25.265441",
  "modified_by": "Administrator",
  "module": "Printrov Merch Store",
  "name": "Store Order",

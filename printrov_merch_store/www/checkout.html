@@ -2,6 +2,8 @@
 
 {% block script %}
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<!-- TODO: move to separate file -->
 <script>
     const checkout_form = document.getElementById("checkout-form");
     checkout_form.addEventListener("submit", (e) => {
@@ -16,10 +18,54 @@
                 "product_name": "{{ frappe.form_dict.get('product') }}",
                 "order_details": Object.fromEntries(formData)
             }
-        }).then(() => {
-            alert("Request made to the backend...")
-        }).catch(() => {
-            alert("Something wend wrong..")
+        }).then(({ message }) => {
+            const { key_id, order_id } = message;
+            let options = {
+                key: key_id,
+                order_id,
+                handler: (response) => {
+                    const payment_id = response.razorpay_payment_id;
+                    const signature = response.razorpay_signature;
+
+                    frappe.call({
+                        "method": "printrov_merch_store.api.handle_payment_success",
+                        "args": {
+                            order_id,
+                            payment_id,
+                            signature
+                        }
+                    }).then(({ message: store_order_id }) => {
+                        // redirect to success page
+                        window.location = `/store/success?store_order_id=${store_order_id}`
+                    }).catch(() => {
+                        alert("Error placing your order!")
+                    })
+
+
+                },
+                prefill: {
+                    "name": formData.get("customer_name"),
+                    "email": frappe.session.user,
+                    "contact": formData.get("phone_number")
+                },
+            };
+
+            let rzp = new Razorpay(options);
+
+            rzp.on('payment.failed', function (response){
+                alert(response.error.code);
+                alert(response.error.description);
+                alert(response.error.source);
+                alert(response.error.step);
+                alert(response.error.reason);
+                alert(response.error.metadata.order_id);
+                alert(response.error.metadata.payment_id);
+        });
+
+            rzp.open();
+        }).catch((e) => {
+            console.error(e);
+            alert("Something went wrong..")
         })
         // Use the details to trigger payment here
         // Process payment events and notify backend
@@ -29,9 +75,21 @@
 {% endblock %}
 
 {% block page_content %}
-<h2>Check Out with: {{ frappe.form_dict.get("product") }}</h2>
 
+{% set product_name = frappe.form_dict.get("product") %}
+<h2>Check Out with: {{ product_name }}</h2>
+
+{% set variants = frappe.get_cached_doc("Store Product", product_name).variants %}
 <form class="mt-5" id="checkout-form">
+    <div class="form-group">
+        <label for="variant">Size</label>
+        <select required name="variant_id" class="form-control" id="variant">
+            {% for variant in variants %}
+            <option value="{{ variant.variant_id }}">{{ variant.size }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
     <div class="form-group">
         <label for="customer_name">Full Name</label>
         <input required name="customer_name" type="text" class="form-control" id="customer_name">
