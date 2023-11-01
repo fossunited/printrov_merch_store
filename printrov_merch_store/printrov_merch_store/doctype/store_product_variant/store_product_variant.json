@@ -6,9 +6,9 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "sku",
-  "variant_id",
   "variant_name",
+  "variant_id",
+  "sku",
   "column_break_wrlb",
   "color",
   "size"
@@ -17,12 +17,12 @@
   {
    "fieldname": "sku",
    "fieldtype": "Data",
-   "in_list_view": 1,
    "label": "SKU"
   },
   {
    "fieldname": "variant_id",
    "fieldtype": "Int",
+   "in_list_view": 1,
    "label": "Variant ID"
   },
   {
@@ -51,7 +51,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-10-25 14:56:26.291780",
+ "modified": "2023-11-01 23:09:16.961121",
  "modified_by": "Administrator",
  "module": "Printrov Merch Store",
  "name": "Store Product Variant",
