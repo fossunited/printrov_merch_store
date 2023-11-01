@@ -87,17 +87,11 @@ def sync_status_for_order(order_id):
     response = make_printrove_request(order_endpoint)
     status = response["order"]["status"]
 
-    frappe.db.set_value(
-        "Store Order",
-        {"printrove_order_id": order_id},
-        "printrove_status",
-        status,
+    order = frappe.get_doc(
+        "Store Order", {"printrove_order_id": order_id}
     )
-
+    order.printrove_status = status
     if status in ("Cancelled", "Delivered"):
-        frappe.db.set_value(
-            "Store Order",
-            {"printrove_order_id": order_id},
-            "status",
-            status,
-        )
+        order.status = status
+
+    order.save(ignore_permissions=True)

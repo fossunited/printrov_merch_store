@@ -215,7 +215,8 @@
   {
    "fieldname": "printrove_status",
    "fieldtype": "Data",
-   "label": "Printrove Status"
+   "label": "Printrove Status",
+   "read_only": 1
   },
   {
    "fieldname": "courier_details_section",
@@ -255,7 +256,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-11-01 16:13:12.430714",
+ "modified": "2023-11-01 17:20:14.455839",
  "modified_by": "Administrator",
  "module": "Printrov Merch Store",
  "name": "Store Order",

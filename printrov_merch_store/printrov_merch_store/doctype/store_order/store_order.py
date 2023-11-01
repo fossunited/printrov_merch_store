@@ -68,3 +68,4 @@ class StoreOrder(Document):
     @frappe.whitelist()
     def sync_status_from_printrove(self):
         sync_status_for_order(self.printrove_order_id)
+        self.reload()
