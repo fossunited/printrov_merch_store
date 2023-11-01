@@ -36,7 +36,9 @@ def get_printrove_access_token():
     return access_token
 
 
-def make_printrove_request(endpoint, method="GET", data=None):
+def make_printrove_request(
+    endpoint, method="GET", data=None, params=None
+):
     access_token = get_printrove_access_token()
     headers = {"Authorization": f"Bearer {access_token}"}
 
@@ -44,6 +46,32 @@ def make_printrove_request(endpoint, method="GET", data=None):
         make_get_request if method == "GET" else make_post_request
     )
     response = make_request(
-        f"{BASE_URL}{endpoint}", headers=headers, data=data
+        f"{BASE_URL}{endpoint}",
+        headers=headers,
+        data=data,
+        params=params,
     )
     return response
+
+
+@frappe.whitelist(allow_guest=True)
+def get_available_couriers(
+    pincode: str,
+    country: str = "India",
+    weight_in_gms: int = 800,
+    cod: bool = False,
+):
+    serviceability_endpoint = "api/external/serviceability"
+    params = {
+        "pincode": pincode,
+        "country": country,
+        "weight": weight_in_gms,
+        "cod": "true" if cod else "false",
+    }
+
+    response = make_printrove_request(
+        serviceability_endpoint, params=params
+    )
+    couriers = response.get("couriers", [])
+
+    return couriers
