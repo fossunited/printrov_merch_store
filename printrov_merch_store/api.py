@@ -3,12 +3,17 @@ from razorpay.errors import (
     SignatureVerificationError as RazorpaySignatureVerificationError,
 )
 
-from printrov_merch_store.utils import get_razorpay_client
+from printrov_merch_store.utils import (
+    get_available_couriers,
+    get_razorpay_client,
+)
 
 
 @frappe.whitelist()
 def handle_checkout_submit(product_name: str, order_details):
     order_details = frappe.parse_json(order_details)
+
+    validate_serviceability(order_details.get("pincode"))
 
     # Get the razorpay client
     razorpay_client = get_razorpay_client()
@@ -30,6 +35,17 @@ def handle_checkout_submit(product_name: str, order_details):
         "order_id": razorpay_order["id"],
     }
     # print(order_details)
+
+
+def validate_serviceability(pincode):
+    couriers = []
+    try:
+        couriers = get_available_couriers(pincode)
+    except Exception:
+        frappe.throw("Sorry, we don't deliver to your location yet.")
+
+    if not couriers:
+        frappe.throw("Sorry, we don't deliver to your location yet.")
 
 
 @frappe.whitelist()
