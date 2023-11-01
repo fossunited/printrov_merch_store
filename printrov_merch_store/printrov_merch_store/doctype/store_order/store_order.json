@@ -65,6 +65,8 @@
   {
    "fieldname": "customer_name",
    "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Customer Name",
    "reqd": 1
   },
@@ -140,6 +142,7 @@
   {
    "fieldname": "user",
    "fieldtype": "Link",
+   "in_standard_filter": 1,
    "label": "User",
    "options": "User",
    "reqd": 1
@@ -170,6 +173,7 @@
   {
    "fieldname": "variant_id",
    "fieldtype": "Int",
+   "in_standard_filter": 1,
    "label": "Variant ID",
    "reqd": 1
   },
@@ -275,7 +279,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-11-01 18:14:53.696411",
+ "modified": "2023-11-01 23:15:16.030961",
  "modified_by": "Administrator",
  "module": "Printrov Merch Store",
  "name": "Store Order",
@@ -298,6 +302,7 @@
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],
+ "title_field": "product",
  "track_changes": 1,
  "track_seen": 1,
  "track_views": 1
