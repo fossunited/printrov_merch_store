@@ -64,6 +64,7 @@ class StoreOrder(Document):
             }
         )
         self.save()
+        self.submit()
 
     @frappe.whitelist()
     def sync_status_from_printrove(self):

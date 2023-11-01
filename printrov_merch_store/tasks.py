@@ -95,3 +95,6 @@ def sync_status_for_order(order_id):
         order.status = status
 
     order.save(ignore_permissions=True)
+
+    if status == "Cancelled" and order.docstatus != 2:
+        order.cancel()

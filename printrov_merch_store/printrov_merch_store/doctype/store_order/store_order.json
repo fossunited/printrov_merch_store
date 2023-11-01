@@ -36,12 +36,14 @@
   "courier_details_section",
   "courier_name",
   "courier_cost_inr",
+  "tracking_status",
+  "cod",
   "column_break_jhzt",
   "courier_id",
-  "cod",
+  "tracking_id",
+  "tracking_url",
   "printrove_order_details_section",
   "printrove_order_id",
-  "tracking_id",
   "column_break_rjpc",
   "printrove_status"
  ],
@@ -118,6 +120,7 @@
    "reqd": 1
   },
   {
+   "allow_on_submit": 1,
    "default": "Payment Pending",
    "fieldname": "status",
    "fieldtype": "Select",
@@ -204,15 +207,18 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "tracking_id",
    "fieldtype": "Data",
-   "label": "Tracking ID"
+   "label": "Tracking ID",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_rjpc",
    "fieldtype": "Column Break"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "printrove_status",
    "fieldtype": "Data",
    "label": "Printrove Status",
@@ -221,7 +227,7 @@
   {
    "fieldname": "courier_details_section",
    "fieldtype": "Section Break",
-   "label": "Courier Details"
+   "label": "Tracking Details"
   },
   {
    "fieldname": "courier_name",
@@ -251,12 +257,25 @@
    "fieldtype": "Check",
    "label": "Cash On Delivery",
    "read_only": 1
+  },
+  {
+   "fieldname": "tracking_status",
+   "fieldtype": "Data",
+   "label": "Tracking Status",
+   "read_only": 1
+  },
+  {
+   "fieldname": "tracking_url",
+   "fieldtype": "Data",
+   "label": "Tracking URL",
+   "options": "URL",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-11-01 17:20:14.455839",
+ "modified": "2023-11-01 18:14:53.696411",
  "modified_by": "Administrator",
  "module": "Printrov Merch Store",
  "name": "Store Order",
