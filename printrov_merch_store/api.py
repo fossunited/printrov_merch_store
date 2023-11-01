@@ -78,6 +78,11 @@ def handle_payment_success(order_id, payment_id, signature):
 
 
 def create_store_order(product_name, order_details, razorpay_order):
+    couriers = get_available_couriers(order_details.get("pincode"))
+
+    # select the cheapest (for now)
+    cheapest_courier = min(couriers, key=lambda x: x["cost"])
+
     order = frappe.new_doc("Store Order")
     order.product = product_name
     order.variant_id = order_details.variant_id
@@ -94,6 +99,9 @@ def create_store_order(product_name, order_details, razorpay_order):
             "pincode": order_details.pincode,
             "country": "India",  # todo: later, international shipping!
             "razorpay_order_id": razorpay_order["id"],
+            "courier_id": cheapest_courier["id"],
+            "courier_name": cheapest_courier["name"],
+            "courier_cost_inr": cheapest_courier["cost"],
         }
     )
     return order.insert()

@@ -33,6 +33,11 @@
   "country",
   "state",
   "city",
+  "courier_details_section",
+  "courier_name",
+  "courier_cost_inr",
+  "column_break_jhzt",
+  "courier_id",
   "printrove_order_details_section",
   "printrove_order_id",
   "tracking_id",
@@ -116,6 +121,7 @@
    "default": "Payment Pending",
    "fieldname": "status",
    "fieldtype": "Select",
+   "in_list_view": 1,
    "label": "Status",
    "options": "Payment Pending\nPaid\nPlaced On Printrove\nDelivered"
   },
@@ -215,12 +221,39 @@
    "fieldname": "printrove_status",
    "fieldtype": "Data",
    "label": "Printrove Status"
+  },
+  {
+   "fieldname": "courier_details_section",
+   "fieldtype": "Section Break",
+   "label": "Courier Details"
+  },
+  {
+   "fieldname": "courier_name",
+   "fieldtype": "Data",
+   "label": "Courier Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "courier_cost_inr",
+   "fieldtype": "Int",
+   "label": "Courier Cost (INR)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_jhzt",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "courier_id",
+   "fieldtype": "Int",
+   "label": "Courier ID",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-10-26 12:23:15.259878",
+ "modified": "2023-11-01 15:49:39.372593",
  "modified_by": "Administrator",
  "module": "Printrov Merch Store",
  "name": "Store Order",
