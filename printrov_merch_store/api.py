@@ -92,7 +92,7 @@ def create_store_order(product_name, order_details, razorpay_order):
             "city": order_details.city,
             "state": order_details.state,
             "pincode": order_details.pincode,
-            "country": order_details.country,
+            "country": "India",  # todo: later, international shipping!
             "razorpay_order_id": razorpay_order["id"],
         }
     )
