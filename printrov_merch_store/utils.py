@@ -1,4 +1,5 @@
 import frappe
+import razorpay
 from frappe.integrations.utils import (
     make_get_request,
     make_post_request,
@@ -75,3 +76,13 @@ def get_available_couriers(
     couriers = response.get("couriers", [])
 
     return couriers
+
+
+def get_razorpay_client():
+    razorpay_settings = frappe.get_cached_doc(
+        "Printrove Razorpay Settings"
+    )
+    key_id = razorpay_settings.key_id
+    key_secret = razorpay_settings.get_password("key_secret")
+
+    return razorpay.Client(auth=(key_id, key_secret))

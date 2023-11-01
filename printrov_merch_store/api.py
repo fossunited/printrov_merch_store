@@ -1,5 +1,9 @@
 import frappe
-import razorpay
+from razorpay.errors import (
+    SignatureVerificationError as RazorpaySignatureVerificationError,
+)
+
+from printrov_merch_store.utils import get_razorpay_client
 
 
 @frappe.whitelist()
@@ -39,7 +43,7 @@ def handle_payment_success(order_id, payment_id, signature):
                 "razorpay_signature": signature,
             }
         )
-    except razorpay.errors.SignatureVerificationError:
+    except RazorpaySignatureVerificationError:
         frappe.throw("Invalid Payment Signature")
 
     so = frappe.get_doc(
@@ -77,13 +81,3 @@ def create_store_order(product_name, order_details, razorpay_order):
         }
     )
     return order.insert()
-
-
-def get_razorpay_client():
-    razorpay_settings = frappe.get_cached_doc(
-        "Printrove Razorpay Settings"
-    )
-    key_id = razorpay_settings.key_id
-    key_secret = razorpay_settings.get_password("key_secret")
-
-    return razorpay.Client(auth=(key_id, key_secret))
