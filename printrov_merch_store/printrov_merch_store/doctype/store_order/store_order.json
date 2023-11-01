@@ -38,11 +38,11 @@
   "courier_cost_inr",
   "column_break_jhzt",
   "courier_id",
+  "cod",
   "printrove_order_details_section",
   "printrove_order_id",
   "tracking_id",
   "column_break_rjpc",
-  "courier",
   "printrove_status"
  ],
  "fields": [
@@ -123,7 +123,7 @@
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Status",
-   "options": "Payment Pending\nPaid\nPlaced On Printrove\nDelivered"
+   "options": "Payment Pending\nPaid\nPlaced On Printrove\nDelivered\nCancelled"
   },
   {
    "fieldname": "billing_details_section",
@@ -213,11 +213,6 @@
    "fieldtype": "Column Break"
   },
   {
-   "fieldname": "courier",
-   "fieldtype": "Data",
-   "label": "Courier"
-  },
-  {
    "fieldname": "printrove_status",
    "fieldtype": "Data",
    "label": "Printrove Status"
@@ -248,12 +243,19 @@
    "fieldtype": "Int",
    "label": "Courier ID",
    "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "cod",
+   "fieldtype": "Check",
+   "label": "Cash On Delivery",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-11-01 15:49:39.372593",
+ "modified": "2023-11-01 16:13:12.430714",
  "modified_by": "Administrator",
  "module": "Printrov Merch Store",
  "name": "Store Order",

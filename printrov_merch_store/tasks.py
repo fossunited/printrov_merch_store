@@ -60,3 +60,44 @@ def get_product_variants(product_id):
         )
 
     return processed_variants
+
+
+def sync_order_status_from_printrove():
+    orders_to_sync = frappe.db.get_all(
+        "Store Order",
+        filters={
+            "status": ("not in", ("Paid", "Cancelled", "Delivered")),
+            "printrove_order_id": ("!=", ""),
+        },
+        pluck="printrove_order_id",
+    )
+
+    for order_id in orders_to_sync:
+        try:
+            sync_status_for_order(order_id)
+        except:
+            frappe.log_error(
+                "Error syncing order",
+                f"Printrove Order ID: {order_id}",
+            )
+
+
+def sync_status_for_order(order_id):
+    order_endpoint = f"api/external/orders/{order_id}"
+    response = make_printrove_request(order_endpoint)
+    status = response["order"]["status"]
+
+    frappe.db.set_value(
+        "Store Order",
+        {"printrove_order_id": order_id},
+        "printrove_status",
+        status,
+    )
+
+    if status in ("Cancelled", "Delivered"):
+        frappe.db.set_value(
+            "Store Order",
+            {"printrove_order_id": order_id},
+            "status",
+            status,
+        )

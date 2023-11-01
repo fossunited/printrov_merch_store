@@ -137,7 +137,8 @@ scheduler_events = {
     # every five minutes
     "Cron": {
         "*/5 * * * *": [
-            "printrov_merch_store.tasks.sync_products_from_printrove"
+            "printrov_merch_store.tasks.sync_products_from_printrove",
+            "printrov_merch_store.tasks.sync_order_status_from_printrove",
         ]
     }
 }

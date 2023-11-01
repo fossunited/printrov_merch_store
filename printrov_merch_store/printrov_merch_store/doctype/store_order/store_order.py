@@ -4,6 +4,7 @@
 import frappe
 from frappe.model.document import Document
 
+from printrov_merch_store.tasks import sync_status_for_order
 from printrov_merch_store.utils import make_printrove_request
 
 
@@ -17,12 +18,10 @@ class StoreOrder(Document):
                 queue="short",
             )
 
+    @frappe.whitelist()
     def place_order_on_printrove(self):
         order_endpoint = "api/external/orders"
 
-        printrove_product_id = frappe.db.get_value(
-            "Store Product", self.product, "printrove_id"
-        )
         order_payload = {
             "reference_number": self.name,
             "retail_price": self.retail_price,
@@ -40,15 +39,32 @@ class StoreOrder(Document):
             },
             "order_products": [
                 {
-                    "product_id": printrove_product_id,
                     "variant_id": self.variant_id,
                     "quantity": 1,  # TODO: later, bulk!
                 }
             ],
+            "courier_id": self.courier_id,
+            "cod": bool(self.cod),
         }
 
         response = make_printrove_request(
             order_endpoint, method="POST", data=order_payload
         )
 
-        breakpoint()
+        if response["status"] != "success":
+            frappe.throw("Something went wrong!")
+
+        printrove_order = response["order"]
+
+        self.update(
+            {
+                "status": "Placed On Printrove",
+                "printrove_order_id": printrove_order["id"],
+                "printrove_order_status": printrove_order["status"],
+            }
+        )
+        self.save()
+
+    @frappe.whitelist()
+    def sync_status_from_printrove(self):
+        sync_status_for_order(self.printrove_order_id)
