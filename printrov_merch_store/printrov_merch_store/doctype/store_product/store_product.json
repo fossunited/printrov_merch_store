@@ -149,7 +149,7 @@
  "index_web_pages_for_search": 1,
  "is_published_field": "is_published",
  "links": [],
- "modified": "2023-10-26 06:50:45.899112",
+ "modified": "2023-11-02 12:03:02.676986",
  "modified_by": "Administrator",
  "module": "Printrov Merch Store",
  "name": "Store Product",
@@ -169,7 +169,7 @@
    "write": 1
   }
  ],
- "route": "products",
+ "route": "store",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],
