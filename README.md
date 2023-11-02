@@ -4,4 +4,4 @@ Printrov Merch Store built on Frappe
 
 #### License
 
-mit
+AGPL 3.0
