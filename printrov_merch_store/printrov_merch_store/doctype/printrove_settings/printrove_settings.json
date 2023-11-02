@@ -12,6 +12,7 @@
   "column_break_ppmp",
   "password",
   "storefront_section",
+  "store_support_link",
   "use_custom_product_view_template",
   "custom_product_view_template"
  ],
@@ -52,12 +53,17 @@
    "fieldname": "storefront_section",
    "fieldtype": "Section Break",
    "label": "Storefront"
+  },
+  {
+   "fieldname": "store_support_link",
+   "fieldtype": "Data",
+   "label": "Store Support Link"
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2023-10-23 11:05:26.774350",
+ "modified": "2023-11-02 12:46:51.963603",
  "modified_by": "Administrator",
  "module": "Printrov Merch Store",
  "name": "Printrove Settings",

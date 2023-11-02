@@ -1,0 +1,44 @@
+{% extends "templates/web.html" %}
+
+{% set orders = frappe.db.get_all("Store Order",
+filters={"user": frappe.session.user, "status": ("!=", "Payment Pending")},
+fields=["product", "retail_price", "status", "name", "creation"],
+order_by="creation desc"
+)
+%}
+
+{% block page_content %}
+<h2 class="mb-6">My Orders</h2>
+
+<div class="row">
+    {% set support_link = frappe.db.get_single_value('Printrove Settings', 'store_support_link') %}
+
+    {% for order in orders %}
+    <div class="col-sm-6 mb-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ order.product }}</h5>
+                {% set formatted_price = frappe.format_value(order.retail_price, "Currency", currency="INR") %}
+                <p class="card-text">
+
+                    {% set badge_color = "green" if order.status in ("Paid", "Delivered") else "red" if order.status ==
+                    "Cancelled" else "gray" %}
+                    <span class="indicator-pill no-indicator-dot whitespace-nowrap {{ badge_color }}"><span>{{ order.status
+                            }}</span></span>
+
+                    <br>
+                    {{ formatted_price }} - {{ order.name }}
+
+                    <br>
+
+                    <span>
+                    {{ order.creation.strftime('%d %B, %Y') }}
+                    </span>
+                </p>
+                <a href="{{ support_link }}" class="btn btn-primary">Contact Support</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
