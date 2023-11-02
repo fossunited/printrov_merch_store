@@ -1,0 +1,23 @@
+{% extends "templates/web.html" %}
+
+{% set products = frappe.db.get_all("Store Product",
+    filters={"is_published": 1},
+    fields=["name", "front_mockup", "retail_price", "route"]
+) %}
+
+{% block page_content %}
+    <div>
+        {% for product in products %}
+        <div class="card mb-6">
+            <img src="{{ product.front_mockup }}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{ product.name }}</h5>
+
+              {% set formatted_price = frappe.format_value(product.retail_price, "Currency", currency="INR") %}
+              <p class="card-text">{{ formatted_price }}</p>
+              <a href="/{{ product.route }}" class="btn btn-primary">View</a>
+            </div>
+          </div>
+        {% endfor %}
+    </div>
+{% endblock %}
