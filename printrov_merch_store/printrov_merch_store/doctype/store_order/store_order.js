@@ -3,6 +3,14 @@
 
 frappe.ui.form.on("Store Order", {
   refresh(frm) {
+    frm.set_query("invoice_format", (doc) => {
+      return {
+        filters: {
+          doc_type: doc.doctype
+        }
+      }
+    })
+
     if (frm.doc.status == "Paid") {
       frm.add_custom_button(
         __("Place Order on Printrove"),

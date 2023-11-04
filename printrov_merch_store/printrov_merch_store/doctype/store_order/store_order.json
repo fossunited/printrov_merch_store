@@ -13,10 +13,6 @@
   "variant_id",
   "column_break_ujlv",
   "retail_price",
-  "payment_details_section",
-  "razorpay_order_id",
-  "column_break_hjxh",
-  "razorpay_payment_id",
   "customer_details_section",
   "user",
   "customer_name",
@@ -24,6 +20,10 @@
   "status",
   "phone_number",
   "amended_from",
+  "payment_details_section",
+  "razorpay_order_id",
+  "column_break_hjxh",
+  "razorpay_payment_id",
   "billing_details_section",
   "address_line_1",
   "address_line_2",
@@ -33,6 +33,11 @@
   "country",
   "state",
   "city",
+  "printrove_order_details_section",
+  "printrove_order_id",
+  "column_break_rjpc",
+  "printrove_status",
+  "fulfilment_tab",
   "courier_details_section",
   "courier_name",
   "courier_cost_inr",
@@ -42,10 +47,8 @@
   "courier_id",
   "tracking_id",
   "tracking_url",
-  "printrove_order_details_section",
-  "printrove_order_id",
-  "column_break_rjpc",
-  "printrove_status"
+  "section_break_rjwi",
+  "invoice_format"
  ],
  "fields": [
   {
@@ -275,12 +278,27 @@
    "label": "Tracking URL",
    "options": "URL",
    "read_only": 1
+  },
+  {
+   "fieldname": "fulfilment_tab",
+   "fieldtype": "Tab Break",
+   "label": "Fulfilment"
+  },
+  {
+   "fieldname": "section_break_rjwi",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "invoice_format",
+   "fieldtype": "Link",
+   "label": "Invoice Format",
+   "options": "Print Format"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-11-04 11:28:30.440441",
+ "modified": "2023-11-04 11:46:57.371864",
  "modified_by": "Administrator",
  "module": "Printrov Merch Store",
  "name": "Store Order",
