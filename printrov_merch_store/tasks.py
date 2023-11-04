@@ -27,7 +27,6 @@ def sync_products_from_printrove():
             "front_mockup": product["mockup"]["front_mockup"],
             "back_mockup": product["mockup"]["back_mockup"],
             "printrove_category": product["product"]["name"],
-            "printrove_category_id": product["product"]["id"],
             "variants": variants,
         }
 

@@ -27,8 +27,7 @@
   "printrove_id",
   "column_break_bdfh",
   "back_mockup",
-  "printrove_category",
-  "printrove_category_id"
+  "printrove_category"
  ],
  "fields": [
   {
@@ -96,15 +95,10 @@
   },
   {
    "fieldname": "printrove_category",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Printrove Category",
-   "read_only": 1
-  },
-  {
-   "fieldname": "printrove_category_id",
-   "fieldtype": "Int",
-   "label": "Printrove Category ID",
+   "options": "Printrove Subcategory",
    "read_only": 1
   },
   {
@@ -149,7 +143,7 @@
  "index_web_pages_for_search": 1,
  "is_published_field": "is_published",
  "links": [],
- "modified": "2023-11-02 12:03:02.676986",
+ "modified": "2023-11-04 11:19:34.011200",
  "modified_by": "Administrator",
  "module": "Printrov Merch Store",
  "name": "Store Product",
