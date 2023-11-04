@@ -9,6 +9,15 @@ from printrov_merch_store.utils import make_printrove_request
 
 
 class StoreOrder(Document):
+    def before_save(self):
+        # /api/method/frappe.utils.print_format.download_pdf?
+        # frappe.attach_print(
+        # new_doc.doctype, new_doc.name, file_name=new_doc.name, print_format=print_format
+        # )
+        # we can give this to frappe.sendmail
+
+        pass
+
     def on_update(self):
         if self.has_value_changed("status") and self.status == "Paid":
             frappe.enqueue_doc(

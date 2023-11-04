@@ -13,5 +13,13 @@ frappe.ui.form.on("Printrove Settings", {
           frappe.show_alert({ message: "Store Products Synced Successfully!", indicator: "green" });
         });
     });
+
+    frm.set_query("default_order_invoice_format", (doc) => {
+      return {
+        filters: {
+          doc_type: "Store Order"
+        }
+      }
+    })
   },
 });
