@@ -124,3 +124,25 @@ def sync_categories_from_printrove():
                 "id": category["id"],
             }
         ).insert(ignore_permissions=True, ignore_if_duplicate=True)
+
+        # sync sub categories
+        sync_subcategories_from_printrove(
+            category["id"], category["name"]
+        )
+
+
+def sync_subcategories_from_printrove(category_id, category_name):
+    endpoint = f"api/external/categories/{category_id}"
+    response = make_printrove_request(endpoint)
+    subcategories = response["products"]
+
+    for subcategory in subcategories:
+        frappe.get_doc(
+            {
+                "doctype": "Printrove Subcategory",
+                "name": subcategory["name"],
+                "id": subcategory["id"],
+                "gst_percent": subcategory["gst"],
+                "category": category_name,
+            }
+        ).insert(ignore_permissions=True, ignore_if_duplicate=True)
