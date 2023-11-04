@@ -20,6 +20,16 @@ class StoreOrder(Document):
 
     @frappe.whitelist()
     def place_order_on_printrove(self):
+        try:
+            self._place_order_on_printrove()
+        except Exception as e:
+            frappe.log_error(
+                frappe.get_traceback(),
+                f"Error while placing order {self.name} on Printrove",
+            )
+            frappe.throw("Something went wrong!")
+
+    def _place_order_on_printrove(self):
         order_endpoint = "api/external/orders"
 
         order_payload = {
