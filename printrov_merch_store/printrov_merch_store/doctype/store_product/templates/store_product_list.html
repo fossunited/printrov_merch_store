@@ -1,11 +1,23 @@
 {% extends "templates/web.html" %}
 
+{% set category = frappe.form_dict.get("category") %}
+
+{% set parents = [{"label": "All Products", "route": "/store"}] %}
+
+{% if category %}
+  {% set filters = {"is_published": 1, "printrove_category": category} %}
+{% else %}
+  {% set filters = {"is_published": 1} %}
+{% endif %}
+
+
 {% set products = frappe.db.get_all("Store Product",
-    filters={"is_published": 1},
+    filters=filters,
     fields=["name", "front_mockup", "retail_price", "route"]
 ) %}
 
 {% block page_content %}
+    <h2 class="mb-6">{{ "All Products" if not category else category }}</h2>
     <div>
         {% for product in products %}
         <div class="card mb-6">
