@@ -5,6 +5,17 @@ from printrov_merch_store.utils import make_printrove_request
 
 @frappe.whitelist()
 def sync_products_from_printrove():
+    # if not synced, sync categories first
+    categories_are_synced = frappe.db.get_single_value(
+        "Printrove Settings", "categories_synced"
+    )
+
+    if not categories_are_synced:
+        sync_categories_from_printrove()
+        frappe.db.set_single_value(
+            "Printrove Settings", "categories_synced", 1
+        )
+
     products_route = "api/external/products"
     all_products = make_printrove_request(products_route)
     all_products = all_products["products"]
@@ -98,3 +109,18 @@ def sync_status_for_order(order_id):
 
     if status == "Cancelled" and order.docstatus != 2:
         order.cancel()
+
+
+def sync_categories_from_printrove():
+    endpoint = "api/external/categories"
+    response = make_printrove_request(endpoint)
+    categories = response["categories"]
+
+    for category in categories:
+        frappe.get_doc(
+            {
+                "doctype": "Printrove Category",
+                "name": category["name"],
+                "id": category["id"],
+            }
+        ).insert(ignore_permissions=True, ignore_if_duplicate=True)

@@ -13,6 +13,8 @@
   "password",
   "storefront_section",
   "store_support_link",
+  "categories_synced",
+  "custom_template_section",
   "use_custom_product_view_template",
   "custom_product_view_template"
  ],
@@ -58,12 +60,24 @@
    "fieldname": "store_support_link",
    "fieldtype": "Data",
    "label": "Store Support Link"
+  },
+  {
+   "default": "0",
+   "fieldname": "categories_synced",
+   "fieldtype": "Check",
+   "label": "Categories Synced?",
+   "read_only": 1
+  },
+  {
+   "fieldname": "custom_template_section",
+   "fieldtype": "Section Break",
+   "label": "Custom Template"
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2023-11-02 12:46:51.963603",
+ "modified": "2023-11-04 10:56:58.174594",
  "modified_by": "Administrator",
  "module": "Printrov Merch Store",
  "name": "Printrove Settings",
