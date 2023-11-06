@@ -14,7 +14,7 @@ frappe.ui.form.on("Printrove Settings", {
         });
     });
 
-    frm.set_query("default_order_invoice_format", (doc) => {
+    frm.set_query("order_invoice_format", (doc) => {
       return {
         filters: {
           doc_type: "Store Order"

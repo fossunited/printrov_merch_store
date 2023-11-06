@@ -11,10 +11,12 @@
   "email",
   "column_break_ppmp",
   "password",
+  "invoicing_section",
+  "send_invoice_on_order",
+  "order_invoice_format",
   "storefront_section",
   "store_support_link",
   "categories_synced",
-  "default_order_invoice_format",
   "custom_template_section",
   "use_custom_product_view_template",
   "custom_product_view_template"
@@ -74,16 +76,29 @@
    "label": "Custom Template"
   },
   {
-   "fieldname": "default_order_invoice_format",
+   "fieldname": "invoicing_section",
+   "fieldtype": "Section Break",
+   "label": "Invoicing"
+  },
+  {
+   "default": "0",
+   "fieldname": "send_invoice_on_order",
+   "fieldtype": "Check",
+   "label": "Send Invoice On Order?"
+  },
+  {
+   "depends_on": "eval:doc.send_invoice_on_order==1",
+   "fieldname": "order_invoice_format",
    "fieldtype": "Link",
-   "label": "Default Order Invoice Format",
+   "label": "Order Invoice Format",
+   "mandatory_depends_on": "eval:doc.send_invoice_on_order==1",
    "options": "Print Format"
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2023-11-04 11:59:32.595345",
+ "modified": "2023-11-06 15:08:54.059218",
  "modified_by": "Administrator",
  "module": "Printrov Merch Store",
  "name": "Printrove Settings",
