@@ -94,11 +94,21 @@ class StoreOrder(Document):
         )
 
         attachments = [invoice_attachment]
+        message = f"Here is your invoice for order {self.name}"
+
+        if (
+            printrove_settings.invoice_email_message
+            and printrove_settings.invoice_email_message != ""
+        ):
+            message = frappe.render_template(
+                printrove_settings.invoice_email_message,
+                {"order": self},
+            )
 
         frappe.sendmail(
             recipients=self.user,
             subject=f"Order placed successfully {self.name}",
-            message=f"Here is your invoice for order {self.name}",
+            content=message,
             attachments=attachments,
         )
 

@@ -14,6 +14,7 @@
   "invoicing_section",
   "send_invoice_on_order",
   "order_invoice_format",
+  "invoice_email_message",
   "storefront_section",
   "store_support_link",
   "categories_synced",
@@ -93,12 +94,20 @@
    "label": "Order Invoice Format",
    "mandatory_depends_on": "eval:doc.send_invoice_on_order==1",
    "options": "Print Format"
+  },
+  {
+   "depends_on": "eval:doc.send_invoice_on_order==1",
+   "description": "Note: You can use <pre>{{ order.retail_price }}</pre> to add dynamic values.",
+   "fieldname": "invoice_email_message",
+   "fieldtype": "Code",
+   "label": "Message",
+   "options": "HTML"
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2023-11-06 15:08:54.059218",
+ "modified": "2023-11-06 15:40:32.771066",
  "modified_by": "Administrator",
  "module": "Printrov Merch Store",
  "name": "Printrove Settings",
