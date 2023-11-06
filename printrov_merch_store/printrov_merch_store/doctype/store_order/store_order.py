@@ -9,15 +9,6 @@ from printrov_merch_store.utils import make_printrove_request
 
 
 class StoreOrder(Document):
-    def before_save(self):
-        # /api/method/frappe.utils.print_format.download_pdf?
-        # frappe.attach_print(
-        # new_doc.doctype, new_doc.name, file_name=new_doc.name, print_format=print_format
-        # )
-        # we can give this to frappe.sendmail
-
-        pass
-
     def on_update(self):
         if self.has_value_changed("status") and self.status == "Paid":
             frappe.enqueue_doc(
@@ -26,6 +17,12 @@ class StoreOrder(Document):
                 "place_order_on_printrove",
                 queue="short",
             )
+
+            printrove_settings = frappe.get_cached_doc(
+                "Printrove Settings"
+            )
+            if printrove_settings.send_invoice_on_order:
+                self.send_invoice_to_customer()
 
     @frappe.whitelist()
     def place_order_on_printrove(self):
@@ -84,6 +81,28 @@ class StoreOrder(Document):
         )
         self.save()
         self.submit()
+
+    def send_invoice_to_customer(self):
+        printrove_settings = frappe.get_cached_doc(
+            "Printrove Settings"
+        )
+        invoice_attachment = frappe.attach_print(
+            self.doctype,
+            self.name,
+            file_name=self.name,
+            print_format=printrove_settings.order_invoice_format,
+        )
+
+        attachments = [invoice_attachment]
+
+        frappe.sendmail(
+            recipients=self.user,
+            subject=f"Order placed successfully {self.name}",
+            message=f"Here is your invoice for order {self.name}",
+            attachments=attachments,
+        )
+
+        self.db_set("invoice_sent_via_email", 1)
 
     @frappe.whitelist()
     def sync_status_from_printrove(self):
