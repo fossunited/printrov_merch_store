@@ -6,6 +6,14 @@ from frappe.website.website_generator import WebsiteGenerator
 
 
 class StoreProduct(WebsiteGenerator):
+    @property
+    def has_sizes(self):
+        return any([v.size for v in self.variants])
+
+    @property
+    def has_colors(self):
+        return any([v.color for v in self.variants])
+
     def get_context(self, context):
         context.add_breadcrumbs = 1
         context.parents = [
@@ -23,3 +31,9 @@ class StoreProduct(WebsiteGenerator):
             )
 
             context.custom_rendered_html = custom_rendered_html
+
+        context.has_sizes = self.has_sizes
+        context.has_colors = self.has_colors
+        context.render_variants = not (
+            context.has_sizes or context.has_colors
+        ) and len(self.variants) > 1
