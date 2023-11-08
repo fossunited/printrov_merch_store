@@ -18,6 +18,13 @@
 
 {% block page_content %}
     <h2 class="mb-6">{{ "All Products" if not category else category }}</h2>
+
+    {% if products | len == 0 %}
+    <div class="text-center mt-10 container fluid">
+        <img class="mb-5" src="/assets/printrov_merch_store/image/shopping.svg" />
+        <p class="muted">No Products available.</p>
+    </div>
+    {% else %}
     <div>
         {% for product in products %}
         <div class="card mb-6">
@@ -32,6 +39,8 @@
           </div>
         {% endfor %}
     </div>
+    {% endif %}
+
 
     {% if frappe.session.user != "Guest" %}
     <div>
