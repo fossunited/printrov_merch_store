@@ -8,11 +8,11 @@ from frappe.website.website_generator import WebsiteGenerator
 class StoreProduct(WebsiteGenerator):
     @property
     def has_sizes(self):
-        return any([v.size for v in self.variants])
+        return any(v.size for v in self.variants)
 
     @property
     def has_colors(self):
-        return any([v.color for v in self.variants])
+        return any(v.color for v in self.variants)
 
     def get_context(self, context):
         context.add_breadcrumbs = 1
