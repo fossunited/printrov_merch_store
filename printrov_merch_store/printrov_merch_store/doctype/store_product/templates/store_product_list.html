@@ -32,4 +32,10 @@
           </div>
         {% endfor %}
     </div>
+
+    {% if frappe.session.user != "Guest" %}
+    <div>
+      <a href="/store/orders">My Orders</a>
+    </div>
+    {% endif %}
 {% endblock %}

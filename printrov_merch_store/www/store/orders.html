@@ -2,6 +2,10 @@
 
 {% block title %} My Orders {% endblock %}
 
+
+{% set parents = [{"label": "Home", "route": "/store"}] %}
+
+
 {% set orders = frappe.db.get_all("Store Order",
 filters={"user": frappe.session.user, "status": ("!=", "Payment Pending")},
 fields=["product", "retail_price", "status", "name", "creation"],
