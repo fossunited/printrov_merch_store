@@ -33,11 +33,11 @@
   "country",
   "state",
   "city",
+  "fulfilment_tab",
   "printrove_order_details_section",
   "printrove_order_id",
   "column_break_rjpc",
   "printrove_status",
-  "fulfilment_tab",
   "courier_details_section",
   "courier_name",
   "courier_cost_inr",
@@ -286,7 +286,8 @@
   },
   {
    "fieldname": "section_break_rjwi",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Invoicing"
   },
   {
    "default": "0",
@@ -299,7 +300,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-11-04 12:02:45.874906",
+ "modified": "2023-11-08 18:10:39.665843",
  "modified_by": "Administrator",
  "module": "Printrov Merch Store",
  "name": "Store Order",
