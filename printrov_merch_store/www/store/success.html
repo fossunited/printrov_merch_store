@@ -1,6 +1,22 @@
 {% extends "templates/web.html" %}
 
 {% block page_content %}
-    {% set order_id = frappe.form_dict.get("store_order_id") %}
-    <h2>Payment Successful. Your order has been placed with order id: {{ order_id }}</h2>
+
+{% set order_id = frappe.form_dict.get("store_order_id") %}
+{% set courier_name = frappe.db.get_value("Store Order", order_id, "courier_name") %}
+
+<div class="container-fluid mt-14">
+    <img class="px-5 mb-10" src="/assets/printrov_merch_store/image/purchase_success.svg">
+
+    <div>
+        <h2 class="text-center">Order Successful 🎉</h2>
+        <p class="text-center text-muted">The payment was successful!</p>
+        <hr>
+        <div class="mt-8">
+            <p>You will be notified once your order is shipped.</p>
+            <p class="mb-0"><strong>Reference ID:</strong> <span>{{ order_id }}</span></p>
+            <p><strong>Courier Name:</strong> <span>{{ courier_name }}</span></p>
+        </div>
+    </div>
+</div>
 {% endblock %}

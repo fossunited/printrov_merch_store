@@ -35,7 +35,7 @@
                         }
                     }).then(({ message: store_order_id }) => {
                         // redirect to success page
-                        window.location = `/store/success?store_order_id=${store_order_id}`
+                        window.location = `{{ success_page_route }}?store_order_id=${store_order_id}`
                     }).catch(() => {
                         alert("Error placing your order!")
                     })

@@ -20,7 +20,9 @@
   "categories_synced",
   "custom_template_section",
   "use_custom_product_view_template",
-  "custom_product_view_template"
+  "custom_product_view_template",
+  "override_success_page",
+  "success_page_route"
  ],
  "fields": [
   {
@@ -74,7 +76,7 @@
   {
    "fieldname": "custom_template_section",
    "fieldtype": "Section Break",
-   "label": "Custom Template"
+   "label": "Storefront Customisations"
   },
   {
    "fieldname": "invoicing_section",
@@ -102,12 +104,26 @@
    "fieldtype": "Code",
    "label": "Message",
    "options": "HTML"
+  },
+  {
+   "default": "0",
+   "fieldname": "override_success_page",
+   "fieldtype": "Check",
+   "label": "Override Success Page?"
+  },
+  {
+   "depends_on": "eval:doc.override_success_page==1",
+   "description": "We will pass Order ID as query parameter to this route <pre>?order_id=ORDER-XX-YYYY-ZZZ</pre>",
+   "fieldname": "success_page_route",
+   "fieldtype": "Data",
+   "label": "Success Page Route",
+   "mandatory_depends_on": "eval:doc.override_success_page==1"
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2023-11-06 15:40:32.771066",
+ "modified": "2023-11-08 22:27:37.903271",
  "modified_by": "Administrator",
  "module": "Printrov Merch Store",
  "name": "Printrove Settings",
