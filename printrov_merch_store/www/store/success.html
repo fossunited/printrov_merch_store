@@ -2,7 +2,7 @@
 
 {% block page_content %}
 
-{% set order_id = frappe.form_dict.get("store_order_id") %}
+{% set order_id = frappe.form_dict.get("order_id") %}
 {% set courier_name = frappe.db.get_value("Store Order", order_id, "courier_name") %}
 
 <div class="container-fluid mt-14">
