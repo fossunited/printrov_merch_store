@@ -13,7 +13,11 @@ from printrov_merch_store.utils import (
 def handle_checkout_submit(product_name: str, order_details):
     order_details = frappe.parse_json(order_details)
 
-    validate_serviceability(order_details.get("pincode"))
+    # clean up and update the pincode
+    pincode = order_details.get("pincode").strip().replace(" ", "")
+    order_details["pincode"] = pincode
+
+    validate_serviceability(pincode)
 
     # Get the razorpay client
     razorpay_client = get_razorpay_client()
