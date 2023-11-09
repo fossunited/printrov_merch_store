@@ -104,4 +104,4 @@ def create_store_order(product_name, order_details, razorpay_order):
             "courier_cost_inr": cheapest_courier["cost"],
         }
     )
-    return order.insert()
+    return order.insert(ignore_permissions=True)
