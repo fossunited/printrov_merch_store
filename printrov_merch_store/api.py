@@ -62,6 +62,11 @@ def handle_payment_success(order_id, payment_id, signature):
     except RazorpaySignatureVerificationError:
         frappe.throw("Invalid Payment Signature")
 
+    current_user = frappe.session.user
+
+    # set the user as Administrator
+    # to prevent permission errors
+    frappe.set_user("Administrator")
     so = frappe.get_doc(
         "Store Order", {"razorpay_order_id": order_id}
     )
@@ -73,6 +78,9 @@ def handle_payment_success(order_id, payment_id, signature):
         }
     )
     so.save()
+
+    # set the user back
+    frappe.set_user(current_user)
 
     return so.name
 
