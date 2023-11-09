@@ -4,12 +4,17 @@
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
 <script>
+    const place_order_button = document.getElementById("place-order-button");
     const checkout_form = document.getElementById("checkout-form");
+
     checkout_form.addEventListener("submit", (e) => {
         // Create a "Store Order" in the backend
         e.preventDefault();
 
         const formData = new FormData(e.target);
+
+        // disable checkout button
+        place_order_button.setAttribute("disabled", true);
 
         frappe.call({
             "method": "printrov_merch_store.api.handle_checkout_submit",
@@ -35,8 +40,10 @@
                         }
                     }).then(({ message: store_order_id }) => {
                         // redirect to success page
-                        window.location.href = `{{ success_page_route }}?store_order_id=${store_order_id}`
+                        window.location.href = `{{ success_page_route }}?order_id=${store_order_id}`
                     }).catch(() => {
+                        // re-enable checkout button
+                        place_order_button.removeAttribute("disabled");
                         alert("Error placing your order!")
                     })
 
@@ -51,7 +58,7 @@
 
             let rzp = new Razorpay(options);
 
-            rzp.on('payment.failed', function (response){
+            rzp.on('payment.failed', function (response) {
                 alert(response.error.code);
                 alert(response.error.description);
                 alert(response.error.source);
@@ -59,7 +66,7 @@
                 alert(response.error.reason);
                 alert(response.error.metadata.order_id);
                 alert(response.error.metadata.payment_id);
-        });
+            });
 
             rzp.open();
         }).catch((e) => {
@@ -151,6 +158,6 @@
         <label class="form-check-label" for="is_cod" name="is_cod">Cash On Delivery</label>
     </div> -->
 
-    <button type="submit" class="btn btn-primary">Place Order & Pay</button>
+    <button id="place-order-button" type="submit" class="btn btn-primary">Place Order & Pay</button>
 </form>
 {% endblock %}
