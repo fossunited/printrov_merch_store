@@ -27,7 +27,10 @@
   "printrove_id",
   "column_break_bdfh",
   "back_mockup",
-  "printrove_category"
+  "printrove_category",
+  "meta__seo_tab",
+  "meta_image",
+  "meta_description"
  ],
  "fields": [
   {
@@ -138,13 +141,28 @@
    "hidden": 1,
    "label": "Currency",
    "options": "INR"
+  },
+  {
+   "fieldname": "meta__seo_tab",
+   "fieldtype": "Tab Break",
+   "label": "Meta / SEO"
+  },
+  {
+   "fieldname": "meta_image",
+   "fieldtype": "Attach Image",
+   "label": "Meta Image"
+  },
+  {
+   "fieldname": "meta_description",
+   "fieldtype": "Small Text",
+   "label": "Meta Description"
   }
  ],
  "has_web_view": 1,
  "index_web_pages_for_search": 1,
  "is_published_field": "is_published",
  "links": [],
- "modified": "2023-11-06 16:01:27.805458",
+ "modified": "2023-11-09 17:22:12.250311",
  "modified_by": "Administrator",
  "module": "Printrov Merch Store",
  "name": "Store Product",

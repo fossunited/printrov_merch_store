@@ -37,3 +37,13 @@ class StoreProduct(WebsiteGenerator):
         context.render_variants = not (
             context.has_sizes or context.has_colors
         ) and len(self.variants) > 1
+
+        meta_image = (
+            self.meta_image or self.front_mockup or self.back_mockup
+        )
+        context.metatags = {
+            "title": self.get_title(),
+            "image": meta_image,
+            "description": self.meta_description or self.get_title(),
+            "keywords": f"{self.printrove_category},{self.name}",
+        }
