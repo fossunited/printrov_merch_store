@@ -69,8 +69,10 @@
             });
 
             rzp.open();
+            place_order_button.removeAttribute("disabled");
         }).catch((e) => {
             console.error(e);
+            place_order_button.removeAttribute("disabled");
         })
         // Use the details to trigger payment here
         // Process payment events and notify backend
