@@ -1,10 +1,10 @@
 {% extends "templates/web.html" %}
 
-{% block page_content %}
-
 {% set order_id = frappe.form_dict.get("order_id") %}
 {% set courier_name = frappe.db.get_value("Store Order", order_id, "courier_name") %}
+{% set parents = [{"label": "Home", "route": "/store"}] %}
 
+{% block page_content %}
 <div class="container-fluid mt-14">
     <img class="px-5 mb-10" src="/assets/printrov_merch_store/image/purchase_success.svg">
 
@@ -18,5 +18,7 @@
             <p><strong>Courier Name:</strong> <span>{{ courier_name }}</span></p>
         </div>
     </div>
+
+    <a class="btn btn-primary" href="/store/orders">My Orders</a>
 </div>
 {% endblock %}
