@@ -59,10 +59,11 @@ app_license = "mit"
 # ----------
 
 # add methods and filters to jinja environment
-# jinja = {
-# "methods": "printrov_merch_store.utils.jinja_methods",
-# "filters": "printrov_merch_store.utils.jinja_filters"
-# }
+jinja = {
+    "methods": [
+        "printrov_merch_store.utils.get_categories_with_count"
+    ],
+}
 
 # Installation
 # ------------

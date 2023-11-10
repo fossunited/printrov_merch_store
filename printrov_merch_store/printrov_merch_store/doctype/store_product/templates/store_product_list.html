@@ -1,8 +1,9 @@
+{% from "printrov_merch_store/templates/includes/categories_macro.html" import categories_list_group %}
 {% extends "templates/web.html" %}
 
 {% set category = frappe.form_dict.get("category") %}
 
-{% set parents = [{"label": "All Products", "route": "/store"}] %}
+{% set parents = [] %}
 
 {% if category %}
   {% set filters = {"is_published": 1, "printrove_category": category} %}
@@ -17,6 +18,9 @@
 ) %}
 
 {% block page_content %}
+    <h4 class="text-muted mb-3">Browse By Category</h4>
+    {{ categories_list_group(active_category=category) }}
+
     <h2 class="mb-6">{{ "All Products" if not category else category }}</h2>
 
     {% if products | len == 0 %}
