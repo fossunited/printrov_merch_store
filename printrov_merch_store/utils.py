@@ -93,7 +93,9 @@ def get_razorpay_client():
 def get_categories_with_count():
     categories_with_count = defaultdict(lambda: 0)
     product_categories = frappe.db.get_all(
-        "Store Product", pluck="printrove_category"
+        "Store Product",
+        pluck="printrove_category",
+        filters={"is_published": True},
     )
 
     # Count the number of products in each category
