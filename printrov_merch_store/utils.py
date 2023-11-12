@@ -6,10 +6,12 @@ from frappe.integrations.utils import (
     make_get_request,
     make_post_request,
 )
+from frappe.utils.caching import redis_cache
 
 # constants
 BASE_URL = "https://api.printrove.com/"
 SECONDS_IN_YEAR = 364 * 24 * 60 * 60
+SECONDS_IN_WEEK = 7 * 24 * 60 * 60
 
 
 def get_printrove_access_token():
@@ -58,6 +60,7 @@ def make_printrove_request(
 
 
 @frappe.whitelist(allow_guest=True)
+@redis_cache(ttl=SECONDS_IN_WEEK)
 def get_available_couriers(
     pincode: str,
     country: str = "India",
