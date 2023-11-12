@@ -84,13 +84,24 @@ def get_available_couriers(
 
 
 def get_razorpay_client():
-    razorpay_settings = frappe.get_cached_doc(
-        "Printrove Razorpay Settings"
-    )
-    key_id = razorpay_settings.key_id
-    key_secret = razorpay_settings.get_password("key_secret")
+    if not hasattr(frappe.local, "store_razorpay_client_object"):
+        razorpay_settings = frappe.get_cached_doc(
+            "Printrove Razorpay Settings"
+        )
+        key_id = razorpay_settings.key_id
+        key_secret = razorpay_settings.get_password("key_secret")
 
-    return razorpay.Client(auth=(key_id, key_secret))
+        if not (key_id and key_secret):
+            frappe.throw(
+                "Setup razorpay via Printrove Razorpay Settings before using"
+                " printrov_merch_store.api.get_razorpay_client"
+            )
+
+        frappe.local.store_razorpay_client_object = razorpay.Client(
+            auth=(key_id, key_secret)
+        )
+
+    return frappe.local.store_razorpay_client_object
 
 
 def get_categories_with_count():
