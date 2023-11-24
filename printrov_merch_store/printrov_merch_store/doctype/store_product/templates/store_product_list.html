@@ -13,42 +13,45 @@
 
 
 {% set products = frappe.db.get_all("Store Product",
-    filters=filters,
-    fields=["name", "front_mockup", "retail_price", "route"]
+filters=filters,
+fields=["name", "front_mockup", "retail_price", "route"]
 ) %}
 
 {% block page_content %}
-    <h4 class="text-muted mb-3">Browse By Category</h4>
-    {{ categories_list_group(active_category=category) }}
+<h4 class="text-muted mb-3">Browse By Category</h4>
+{{ categories_list_group(active_category=category) }}
 
-    <h2 class="mb-6">{{ "All Products" if not category else category }}</h2>
+<h2 class="mb-6">{{ "All Products" if not category else category }}</h2>
 
-    {% if products | len == 0 %}
-    <div class="text-center mt-10 container fluid">
-        <img class="mb-5" src="/assets/printrov_merch_store/image/shopping.svg" />
-        <p class="muted">No Products available.</p>
+{% if products | len == 0 %}
+  <div class="text-center mt-10 container fluid">
+    <img class="mb-5" src="/assets/printrov_merch_store/image/shopping.svg" />
+    <p class="muted">No Products available.</p>
+  </div>
+{% else %}
+<div class="row">
+  {% for product in products %}
+  <div class="col-sm-6 col-md-4 mb-6">
+    <div class="card mb-6 h-100 d-flex flex-column">
+      <img src="{{ product.front_mockup }}" class="card-img-top" alt="...">
+      <div class="card-body d-flex flex-column">
+        <div>
+          <h5 class="card-title">{{ product.name }}</h5>
+          {% set formatted_price = frappe.format_value(product.retail_price, "Currency", currency="INR") %}
+          <p class="card-text">{{ formatted_price }}</p>
+        </div>
+        <a href="/{{ product.route }}" class="btn btn-primary mt-auto">View</a>
+      </div>
     </div>
-    {% else %}
-    <div>
-        {% for product in products %}
-        <div class="card mb-6">
-            <img src="{{ product.front_mockup }}" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">{{ product.name }}</h5>
-
-              {% set formatted_price = frappe.format_value(product.retail_price, "Currency", currency="INR") %}
-              <p class="card-text">{{ formatted_price }}</p>
-              <a href="/{{ product.route }}" class="btn btn-primary">View</a>
-            </div>
-          </div>
-        {% endfor %}
-    </div>
-    {% endif %}
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
 
 
-    {% if frappe.session.user != "Guest" %}
-    <div>
-      <a href="/store/orders">My Orders</a>
-    </div>
-    {% endif %}
+{% if frappe.session.user != "Guest" %}
+<div>
+  <a href="/store/orders">My Orders</a>
+</div>
+{% endif %}
 {% endblock %}

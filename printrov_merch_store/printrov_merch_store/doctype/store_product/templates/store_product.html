@@ -3,8 +3,15 @@
 {% else %}
     {% extends "templates/web.html" %}
     {% block page_content %}
-        <div>
-            <img src="{{ doc.front_mockup }}" alt="Mockup image" />
+        <div class="row">
+            <div class="col-lg-6">
+                <img src="{{ doc.front_mockup }}" alt="Mockup image" class="img-fluid" />
+            </div>
+            {% if doc.back_mockup %}
+            <div class="col-lg-6">
+                <img src="{{ doc.back_mockup }}" alt="Mockup image" class="img-fluid" />
+            </div>
+            {% endif %}
         </div>
 
         <div>

@@ -88,77 +88,79 @@
 
 {% set product = frappe.get_cached_doc("Store Product", product_name) %}
 <form class="mt-5" id="checkout-form">
+    <div class="row">
+        <div class="col-lg-6">
+            {% if product.has_sizes %}
+            <div class="form-group">
+                <label for="variant">Size</label>
+                <select required name="variant_id" class="form-control" id="variant">
+                    {% for variant in product.variants %}
+                    <option value="{{ variant.variant_id }}">{{ variant.size }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            {% else %}
+            <div class="form-group">
+                <label for="variant">Variant</label>
+                <select required name="variant_id" class="form-control" id="variant">
+                    {% for variant in product.variants %}
+                    <option value="{{ variant.variant_id }}">{{ variant.variant_name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            {% endif %}
 
-    {% if product.has_sizes %}
-    <div class="form-group">
-        <label for="variant">Size</label>
-        <select required name="variant_id" class="form-control" id="variant">
-            {% for variant in product.variants %}
-            <option value="{{ variant.variant_id }}">{{ variant.size }}</option>
-            {% endfor %}
-        </select>
-    </div>
-    {% else %}
-    <div class="form-group">
-        <label for="variant">Variant</label>
-        <select required name="variant_id" class="form-control" id="variant">
-            {% for variant in product.variants %}
-            <option value="{{ variant.variant_id }}">{{ variant.variant_name }}</option>
-            {% endfor %}
-        </select>
-    </div>
-    {% endif %}
+            <div class="form-group">
+                <label for="customer_name">Full Name</label>
+                <input required name="customer_name" type="text" class="form-control" id="customer_name">
+            </div>
 
-    <div class="form-group">
-        <label for="customer_name">Full Name</label>
-        <input required name="customer_name" type="text" class="form-control" id="customer_name">
-    </div>
+            <div class="form-group">
+                <label for="phone_number">Phone Number</label>
+                <input required id="phone_number" name="phone_number" type="text" class="form-control">
+            </div>
+        </div>
 
-    <div class="form-group">
-        <label for="phone_number">Phone Number</label>
-        <input required id="phone_number" name="phone_number" type="text" class="form-control">
-    </div>
+        <div class="col-lg-6">
+            <div class="address-section">
+                <div class="form-group">
+                    <label for="address_line_1">Address Line 1</label>
+                    <input required id="address_line_1" name="address_line_1" type="text" class="form-control">
+                </div>
 
-    <div class="form-group">
-        <label for="address_line_1">Address Line 1</label>
-        <input required id="address_line_1" name="address_line_1" type="text" class="form-control">
-    </div>
+                <div class="form-group">
+                    <label for="address_line_2">Address Line 2</label>
+                    <input required id="address_line_2" name="address_line_2" type="text" class="form-control">
+                </div>
 
-    <div class="form-group">
-        <label for="address_line_2">Address Line 2</label>
-        <input required id="address_line_2" name="address_line_2" type="text" class="form-control">
-    </div>
+                <div class="form-group">
+                    <label for="address_line_3">Address Line 3</label>
+                    <input id="address_line_3" name="address_line_3" type="text" class="form-control">
+                </div>
 
-    <div class="form-group">
-        <label for="address_line_3">Address Line 3</label>
-        <input id="address_line_3" name="address_line_3" type="text" class="form-control">
-    </div>
+                <div class="form-group">
+                    <label for="state">State</label>
+                    <input required id="state" name="state" type="text" class="form-control">
+                </div>
 
-    <div class="form-group">
-        <label for="country">Country</label>
-        <input value="India" readonly required id="country" name="country" type="text" class="form-control">
-    </div>
+                <div class="form-group">
+                    <label for="city">City</label>
+                    <input required id="city" name="city" type="text" class="form-control">
+                </div>
 
-    <div class="form-group">
-        <label for="state">State</label>
-        <input required id="state" name="state" type="text" class="form-control">
-    </div>
+                <div class="form-group">
+                    <label for="pincode">Pin code</label>
+                    <input required id="pincode" name="pincode" type="text" class="form-control">
+                </div>
 
-    <div class="form-group">
-        <label for="city">City</label>
-        <input required id="city" name="city" type="text" class="form-control">
-    </div>
 
-    <div class="form-group">
-        <label for="pincode">Pin code</label>
-        <input required id="pincode" name="pincode" type="text" class="form-control">
+                <div class="form-group">
+                    <label for="country">Country</label>
+                    <input value="India" readonly id="country" name="country" type="text" class="form-control">
+                </div>
+            </div>
+        </div>
     </div>
-
-    <!-- TODO: Handle Cash On Delivery -->
-    <!-- <div class="form-group form-check">
-        <input type="checkbox" class="form-check-input" id="is_cod">
-        <label class="form-check-label" for="is_cod" name="is_cod">Cash On Delivery</label>
-    </div> -->
 
     <button id="place-order-button" type="submit" class="btn btn-primary">Place Order & Pay</button>
 </form>
