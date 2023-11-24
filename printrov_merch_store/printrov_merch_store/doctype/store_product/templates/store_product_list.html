@@ -1,6 +1,17 @@
 {% from "printrov_merch_store/templates/includes/categories_macro.html" import categories_list_group %}
 {% extends "templates/web.html" %}
 
+{% set settings = frappe.get_cached_doc("Printrove Settings") %}
+{% set page_title = settings.product_page_title or "Merch Store" %}
+{% set meta_image = settings.meta_image or "" %}
+
+{% block title %} {{ page_title }} {% endblock %}
+{% set metatags = {
+  "title": page_title,
+  "image": meta_image,
+  "description": settings.meta_description or page_title,
+} %}
+
 {% set category = frappe.form_dict.get("category") %}
 
 {% set parents = [] %}

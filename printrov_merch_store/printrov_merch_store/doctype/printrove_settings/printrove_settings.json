@@ -22,7 +22,11 @@
   "use_custom_product_view_template",
   "custom_product_view_template",
   "override_success_page",
-  "success_page_route"
+  "success_page_route",
+  "meta__seo_tab",
+  "product_page_title",
+  "meta_image",
+  "meta_description"
  ],
  "fields": [
   {
@@ -118,12 +122,32 @@
    "fieldtype": "Data",
    "label": "Success Page Route",
    "mandatory_depends_on": "eval:doc.override_success_page==1"
+  },
+  {
+   "fieldname": "meta__seo_tab",
+   "fieldtype": "Tab Break",
+   "label": "Meta / SEO"
+  },
+  {
+   "fieldname": "product_page_title",
+   "fieldtype": "Data",
+   "label": "Product Page Title"
+  },
+  {
+   "fieldname": "meta_image",
+   "fieldtype": "Attach Image",
+   "label": "Meta Image"
+  },
+  {
+   "fieldname": "meta_description",
+   "fieldtype": "Small Text",
+   "label": "Meta Description"
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2023-11-08 22:27:37.903271",
+ "modified": "2023-11-24 14:14:48.811392",
  "modified_by": "Administrator",
  "module": "Printrov Merch Store",
  "name": "Printrove Settings",

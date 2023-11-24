@@ -1,5 +1,8 @@
 {% extends "templates/web.html" %}
 
+{% set product_name = frappe.form_dict.get("product") %}
+{% block title %} Checkout - {{ product_name }} {% endblock %}
+
 {% block script %}
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
@@ -83,7 +86,6 @@
 
 {% block page_content %}
 
-{% set product_name = frappe.form_dict.get("product") %}
 <h2>Buy {{ product_name }}</h2>
 
 {% set product = frappe.get_cached_doc("Store Product", product_name) %}
