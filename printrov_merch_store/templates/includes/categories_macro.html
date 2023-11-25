@@ -3,7 +3,7 @@
     <div class="list-group">
         <a href="/store" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center {{ 'active' if (not active_category) else '' }}" aria-current="true">
             All
-            <span class="badge badge-primary badge-pill">{{ categories_with_count.values()|sum }}</span>
+            <span class="badge badge-primary badge-pill">{{ categories_with_count.total() }}</span>
         </a>
         {% for category, count in categories_with_count.items() %}
             <a href="/store?category={{category}}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center {{ 'active' if category == active_category else '' }}" aria-current="true">

@@ -1,4 +1,4 @@
-from collections import defaultdict
+from collections import Counter
 
 import frappe
 import razorpay
@@ -105,15 +105,11 @@ def get_razorpay_client():
 
 
 def get_categories_with_count():
-    categories_with_count = defaultdict(lambda: 0)
     product_categories = frappe.db.get_all(
         "Store Product",
         pluck="printrove_category",
         filters={"is_published": True},
     )
-
-    # Count the number of products in each category
-    for category in product_categories:
-        categories_with_count[category] += 1
+    categories_with_count = Counter(product_categories)
 
     return categories_with_count
